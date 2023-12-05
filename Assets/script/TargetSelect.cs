@@ -5,6 +5,9 @@ using UnityEngine;
 public class TargetSelect : MonoBehaviour
 {
     private Outline outline;
+    private Transform _oldParent;
+    private bool _isKinematic;
+    private bool _hasCollision;
 
     // Start is called before the first frame update
     void Start()
@@ -14,6 +17,10 @@ public class TargetSelect : MonoBehaviour
             outline.enabled = false;
             outline.OutlineWidth = 5;
         }
+
+        _oldParent = transform.parent;
+        _isKinematic = GetComponent<Rigidbody>().isKinematic;
+        _hasCollision = GetComponent<Rigidbody>().detectCollisions;
     }
 
     // Update is called once per frame
@@ -34,14 +41,20 @@ public class TargetSelect : MonoBehaviour
 
     public void Grab(Transform grabberTf)
     {
-        transform.parent = grabberTf;
+        //transform.parent = grabberTf;
+        transform.SetParent(grabberTf, true);
+        transform.localScale = Vector3.one * 2;
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Rigidbody>().detectCollisions = false;
     }
 
     public void Drop()
     {
-
+        //transform.parent = _oldParent;
+        transform.SetParent(_oldParent, true);
+        transform.localScale = Vector3.one;
+        GetComponent<Rigidbody>().isKinematic = _isKinematic;
+        GetComponent<Rigidbody>().detectCollisions = _hasCollision;
     }
 
     public void Activate()

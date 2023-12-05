@@ -7,6 +7,7 @@ public class EyeSelector : MonoBehaviour
     private Ray _rayon;
     private RaycastHit _hit;
     private GameObject _hitObject;
+    private GameObject _heldObject;
 
     // Start is called before the first frame update
     void Start()
@@ -49,9 +50,20 @@ public class EyeSelector : MonoBehaviour
         if (_hitObject) Debug.Log(_hitObject.name);
         else Debug.Log("No object is being hit");
 
-        if(Input.GetButton("Fire1"))
+        if(Input.GetButtonDown("Fire1"))
         {
-            if (_hitObject.TryGetComponent(out TargetSelect ts)) ts.Interact(transform);
+            if (_hitObject.TryGetComponent(out TargetSelect ts))
+            {
+                ts.Interact(transform);
+                _heldObject = _hitObject;
+            }
+        } else if (Input.GetButtonDown("Fire2"))
+        {
+            if (_heldObject)
+            {
+                _heldObject.GetComponent<TargetSelect>().Drop();
+                _heldObject = null;
+            }
         }
     }
 }
