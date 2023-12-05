@@ -18,9 +18,14 @@ public class TargetSelect : MonoBehaviour
             outline.OutlineWidth = 5;
         }
 
+        if(TryGetComponent(out Rigidbody _myRb))
+        {
+            _isKinematic = _myRb.isKinematic;
+            _hasCollision = _myRb.detectCollisions;
+        }
+
         _oldParent = transform.parent;
-        _isKinematic = GetComponent<Rigidbody>().isKinematic;
-        _hasCollision = GetComponent<Rigidbody>().detectCollisions;
+        
     }
 
     // Update is called once per frame
@@ -45,7 +50,7 @@ public class TargetSelect : MonoBehaviour
         transform.SetParent(grabberTf, true);
         transform.localScale = Vector3.one * 2;
         GetComponent<Rigidbody>().isKinematic = true;
-        GetComponent<Rigidbody>().detectCollisions = false;
+        //GetComponent<Rigidbody>().detectCollisions = false;
     }
 
     public void Drop()
@@ -57,14 +62,9 @@ public class TargetSelect : MonoBehaviour
         GetComponent<Rigidbody>().detectCollisions = _hasCollision;
     }
 
-    public void Activate()
-    {
-
-    }
-
     public void Interact(Transform grabberTf)
     {
         if(CompareTag("Grabbable")) Grab(grabberTf);
-        else if(CompareTag("Activatable")) Activate();
+        else if(TryGetComponent(out ActivateBehaviour _myBehaviour)) _myBehaviour.Activate();
     }
 }
