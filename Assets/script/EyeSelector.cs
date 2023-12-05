@@ -47,9 +47,9 @@ public class EyeSelector : MonoBehaviour
         }
 
         // Affichage du nom de l'objet touché
-        if (_hitObject) Debug.Log(_hitObject.name);
+        /*if (_hitObject) Debug.Log(_hitObject.name);
         else Debug.Log("No object is being hit");
-
+        */
         if(Input.GetButtonDown("Fire1"))
         {
             if (_hitObject.TryGetComponent(out TargetSelect ts))

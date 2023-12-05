@@ -10,11 +10,11 @@ public class DistributeObject : MonoBehaviour
 
     private int _uniqueId;
 
-    void CreatePrefab()
+    public void CreatePrefab()
     {
         GameObject justCreated = Instantiate(_thePrefab, GetComponent<Transform>().position+Vector3.down*1, Quaternion.identity);
         justCreated.GetComponent<MeshCollider>().convex = true;
-        justCreated.tag = "Grabbable";
+        justCreated.tag = "Grabbable"; 
         justCreated.AddComponent<TargetSelect>();
         justCreated.AddComponent<Outline>();
         Rigidbody rb = justCreated.AddComponent<Rigidbody>();
@@ -36,11 +36,10 @@ public class DistributeObject : MonoBehaviour
         
     }
 
-    private void OnTriggerExit(Collider other)
+    public int getId()
     {
-        if(other.GetInstanceID() == _uniqueId)
-        {
-            CreatePrefab();
-        }
+        return _uniqueId;
     }
+
+
 }
