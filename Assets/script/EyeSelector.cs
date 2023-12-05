@@ -55,7 +55,8 @@ public class EyeSelector : MonoBehaviour
             if (_hitObject.TryGetComponent(out TargetSelect ts))
             {
                 ts.Interact(transform);
-                _heldObject = _hitObject;
+                if(_hitObject.CompareTag("Grabbable"))
+                    _heldObject = _hitObject;
             }
         } else if (Input.GetButtonDown("Fire2"))
         {
