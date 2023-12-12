@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BurgerGenAndVerif : MonoBehaviour
 {
+    public GameObject _whereCam;
+
+
     // Start is called before the first frame update
     void Start()
     {

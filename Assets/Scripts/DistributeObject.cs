@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DistributeObject : MonoBehaviour
 {
+    [Tooltip("the object will bie grabbable after creation")]
+    public bool _grabbable = true;
 
     public GameObject _zone;
     public GameObject _thePrefab;
@@ -13,10 +15,17 @@ public class DistributeObject : MonoBehaviour
     public void CreatePrefab()
     {
         GameObject justCreated = Instantiate(_thePrefab, GetComponent<Transform>().position+Vector3.down*1, Quaternion.identity);
-        justCreated.GetComponent<MeshCollider>().convex = true;
-        justCreated.tag = "Grabbable"; 
-        justCreated.AddComponent<TargetSelect>();
-        justCreated.AddComponent<Outline>();
+        MeshCollider m;
+        if(justCreated.TryGetComponent<MeshCollider>(out m))
+        {
+            m.convex = true;
+        }
+        if (_grabbable)
+        {
+            justCreated.tag = "Grabbable";
+            justCreated.AddComponent<TargetSelect>();
+            justCreated.AddComponent<Outline>();
+        }
         Rigidbody rb = justCreated.AddComponent<Rigidbody>();
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic; //Si probleme changer ici
         rb.mass = 1;

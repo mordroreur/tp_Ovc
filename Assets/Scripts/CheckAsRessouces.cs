@@ -20,6 +20,7 @@ public class CheckAsRessouces : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
+
         if (other.gameObject.GetInstanceID() == _creator.GetComponent<DistributeObject>().getId())
         {
             _creator.GetComponent<DistributeObject>().CreatePrefab();
