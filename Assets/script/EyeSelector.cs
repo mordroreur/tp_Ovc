@@ -8,6 +8,7 @@ public class EyeSelector : MonoBehaviour
     private RaycastHit _hit;
     private GameObject _hitObject;
     private GameObject _heldObject;
+    private int _maxGrabDistance = 2;
 
     // Start is called before the first frame update
     void Start()
@@ -21,8 +22,8 @@ public class EyeSelector : MonoBehaviour
         // Lancer du rayon
         _rayon.origin = transform.position;
         _rayon.direction = transform.forward;
-        Physics.Raycast(_rayon, out _hit);
-        Debug.DrawRay(_rayon.origin, _rayon.direction * 15, Color.red);
+        Physics.Raycast(_rayon, out _hit, _maxGrabDistance);
+        //Debug.DrawRay(_rayon.origin, _rayon.direction * 15, Color.red);
 
         // Décoloration de l'ancien objet
         if (_hitObject != null && (_hit.collider == null || _hit.collider.gameObject != _hitObject))
@@ -41,7 +42,7 @@ public class EyeSelector : MonoBehaviour
         }
 
         // Coloration de l'objet touché
-        if (_hitObject != null)
+        if (_hitObject && !_heldObject)
         {
             if (_hitObject.TryGetComponent(out TargetSelect ts)) ts.Target();
         }
@@ -52,9 +53,12 @@ public class EyeSelector : MonoBehaviour
         */
         if(Input.GetButtonDown("Fire1"))
         {
-            if (_hitObject.TryGetComponent(out TargetSelect ts))
+            // Si j'ai les mains vides et que l'object que je regarde est selectionnable
+            if (!_heldObject && _hitObject && _hitObject.TryGetComponent(out TargetSelect ts))
             {
+                // Interagir avec l'objet
                 ts.Interact(transform);
+                // Le prendre en main s'il peut l'être
                 if(_hitObject.CompareTag("Grabbable"))
                     _heldObject = _hitObject;
             }

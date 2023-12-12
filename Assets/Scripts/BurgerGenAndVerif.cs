@@ -4,18 +4,58 @@ using UnityEngine;
 
 public class BurgerGenAndVerif : MonoBehaviour
 {
-    public GameObject _whereCam;
 
+    enum Ingredient
+    {
+        PainBas,
+        PainHaut,
+        Steak,
+        Salade,
+        Tomates,
+        Fromage
+    }
+
+    public GameObject[] _prefabsIngredients;
+    public GameObject _baseBurger;
+    private Ingredient[] _burger;
+    private int _burgerSize;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        GenerateBurger();
+        foreach(Ingredient i in _burger)
+        {
+            Debug.Log(i);
+        }
+        InstanciateBurger();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    void GenerateBurger()
+    {
+        _burgerSize = Random.Range(4, 9);
+        _burger = new Ingredient[_burgerSize];
+        _burger[0] = Ingredient.PainBas;
+        for(int i = 1; i < _burgerSize - 1; ++i)
+        {
+            _burger[i] = (Ingredient) Random.Range(2, System.Enum.GetValues(typeof(Ingredient)).Length);
+        }
+        _burger[_burgerSize - 1] = Ingredient.PainHaut;
+    }
+
+    void InstanciateBurger()
+    {
+        GameObject previousIngredient = _baseBurger;
+        foreach(Ingredient i in _burger)
+        {
+            previousIngredient = Instantiate(_prefabsIngredients[(int)i], previousIngredient.transform);
+            previousIngredient.transform.Translate(0, 0.01f, 0);
+        }
     }
 }
