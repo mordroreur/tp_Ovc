@@ -50,7 +50,7 @@ public class TargetSelect : MonoBehaviour
         transform.SetParent(grabberTf, true);
         transform.localScale = Vector3.one * 2;
         GetComponent<Rigidbody>().isKinematic = true;
-        //GetComponent<Rigidbody>().detectCollisions = false;
+        GetComponent<Rigidbody>().detectCollisions = false;
     }
 
     public void Drop()
