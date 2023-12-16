@@ -19,7 +19,7 @@ public class SnapDetectorCallback : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Grabbable"))
+        if (other.CompareTag("Snappable"))
         {
             _parent.GetComponent<ObjectSnap>().IsEntered(other.gameObject);
             Destroy(_parent.GetComponent<ObjectSnap>());
@@ -28,7 +28,9 @@ public class SnapDetectorCallback : MonoBehaviour
             ObjectSnap p = _parent.AddComponent<ObjectSnap>();
 
             other.GetComponent<Rigidbody>().isKinematic = true;
-            //transform.SetParent(other.GetComponent<Transform>(), true);
+            other.GetComponent<Collider>().enabled = false;
+            
+            transform.SetParent(other.GetComponent<Transform>(), false);
         }
     }
 }

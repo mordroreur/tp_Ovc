@@ -5,7 +5,7 @@ using UnityEngine;
 public class DistributeObject : MonoBehaviour
 {
     [Tooltip("the object will bie grabbable after creation")]
-    public bool _grabbable = true;
+    public bool _snappable = true;
 
     public GameObject _zone;
     public GameObject _thePrefab;
@@ -20,12 +20,18 @@ public class DistributeObject : MonoBehaviour
         {
             m.convex = true;
         }
-        if (_grabbable)
+        if (_snappable)
+        {
+            justCreated.tag = "Snappable";
+            
+        }
+        else
         {
             justCreated.tag = "Grabbable";
-            justCreated.AddComponent<TargetSelect>();
-            justCreated.AddComponent<Outline>();
         }
+        justCreated.AddComponent<TargetSelect>();
+        justCreated.AddComponent<Outline>();
+
         Rigidbody rb = justCreated.AddComponent<Rigidbody>();
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic; //Si probleme changer ici
         rb.mass = 1;

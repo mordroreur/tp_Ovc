@@ -64,7 +64,7 @@ public class TargetSelect : MonoBehaviour
 
     public void Interact(Transform grabberTf)
     {
-        if(CompareTag("Grabbable")) Grab(grabberTf);
+        if(CompareTag("Grabbable") || CompareTag("Snappable")) Grab(grabberTf);
         else if(TryGetComponent(out ActivateBehaviour _myBehaviour)) _myBehaviour.Activate();
     }
 }

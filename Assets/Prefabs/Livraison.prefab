@@ -711,6 +711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bde2e4a1182ef3e4eb234087bb0777a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _snappable: 0
   _zone: {fileID: 1896323263594428112}
   _thePrefab: {fileID: 8986934748937896030, guid: 899c9659cd51c9c44932df971752a749,
     type: 3}

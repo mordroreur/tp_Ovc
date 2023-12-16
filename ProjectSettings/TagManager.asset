@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Grabbable
   - Activatable
+  - Snappable
   layers:
   - Default
   - TransparentFX

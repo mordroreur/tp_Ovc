@@ -5,213 +5,108 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement")]
-    public float moveSpeed;
+    public float _moveSpeed = 7;
 
-    public float groundDrag;
+    public float _groundDrag = 5;
 
-    public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplier;
-    bool readyToJump;
+    public float _jumpForce = 12;
+    public float _jumpCooldown = 0.25f;
+    public float _airMultiplier = 0.4f;
 
-    [HideInInspector] public float walkSpeed;
-    [HideInInspector] public float sprintSpeed;
+
+    private bool _readyToJump;
+
+    private float _walkSpeed;
+    private float _sprintSpeed;
 
     [Header("Keybinds")]
-    public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode _jumpKey = KeyCode.Space;
 
     [Header("Ground Check")]
-    public float playerHeight;
-    public LayerMask whatIsGround;
-    bool grounded;
+    public float _playerHeight;
+    bool _isGrounded;
 
-    public Transform orientation;
+    public Transform _orientation;
 
-    float horizontalInput;
-    float verticalInput;
+    float _horizontalInput;
+    float _verticalInput;
 
-    Vector3 moveDirection;
+    Vector3 _moveDirection;
 
-    Rigidbody rb;
+    Rigidbody _rigidBody;
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        _rigidBody = GetComponent<Rigidbody>();
+        _rigidBody.freezeRotation = true;
 
-        readyToJump = true;
+        _readyToJump = true;
     }
 
     private void Update()
     {
         // ground check
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, whatIsGround);
+        _isGrounded = Physics.Raycast(transform.position, Vector3.down, _playerHeight * 0.5f + 0.3f);
 
-        MyInput();
-        SpeedControl();
 
-        // handle drag
-        if (grounded)
-            rb.drag = groundDrag;
-        else
-            rb.drag = 0;
-    }
 
-    private void FixedUpdate()
-    {
-        MovePlayer();
-    }
-
-    private void MyInput()
-    {
-        horizontalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
+        _horizontalInput = Input.GetAxisRaw("Horizontal");
+        _verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
-        if (Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(_jumpKey) && _readyToJump && _isGrounded)
         {
-            readyToJump = false;
+            _readyToJump = false;
 
             Jump();
 
-            Invoke(nameof(ResetJump), jumpCooldown);
+            Invoke(nameof(ResetJump), _jumpCooldown);
         }
-    }
 
-    private void MovePlayer()
-    {
-        // calculate movement direction
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
-
-        // on ground
-        if (grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
-
-        // in air
-        else if (!grounded)
-            rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
-    }
-
-    private void SpeedControl()
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 flatVel = new Vector3(_rigidBody.velocity.x, 0f, _rigidBody.velocity.z);
 
         // limit velocity if needed
-        if (flatVel.magnitude > moveSpeed)
+        if (flatVel.magnitude > _moveSpeed)
         {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
+            Vector3 limitedVel = flatVel.normalized * _moveSpeed;
+            _rigidBody.velocity = new Vector3(limitedVel.x, _rigidBody.velocity.y, limitedVel.z);
         }
+
+        // handle drag
+        if (_isGrounded)
+            _rigidBody.drag = _groundDrag;
+        else
+            _rigidBody.drag = 0;
+
+
+
+        // calculate movement direction
+        _moveDirection = _orientation.forward * _verticalInput + _orientation.right * _horizontalInput;
+        float _increment =  _moveSpeed*Time.deltaTime*30;
+
+        // on ground
+        if (_isGrounded) 
+        {
+            _rigidBody.AddForce(_moveDirection.normalized * _increment * 10f, ForceMode.Force);
+
+        }// in air
+        else if (!_isGrounded)
+        {
+            _rigidBody.AddForce(_moveDirection.normalized * _increment * 10f * _airMultiplier, ForceMode.Force);
+        }
+
     }
+
 
     private void Jump()
     {
         // reset y velocity
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        _rigidBody.velocity = new Vector3(_rigidBody.velocity.x, 0f, _rigidBody.velocity.z);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        _rigidBody.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
     }
     private void ResetJump()
     {
-        readyToJump = true;
-    }
-}
-
-
-/*
-
-public class WalkMovement : MonoBehaviour
-{
-    public float _speed = 10.0f;
-    public float _jump = 100.0f;
-    
-    public float _maxMoveSpeed = 12.0f;
-    public GameObject _camera;
-
-
-    private float _increment;
-    
-    private Rigidbody _rgBody;
-    private bool _cursor;
-    private bool _readyToJump;
-
-   
-
-
-    void OnCollisionEnter(Collision collision)
-    {
-
-    }
-    void OnCollisionExit(Collision collision)
-    {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        //Set Cursor to not be visible
-        Cursor.lockState = CursorLockMode.Locked;
-        _cursor = true;
-
         _readyToJump = true;
-
-        _yRot = 0.0f;
-        _xRot = 0.0f;
-
-        _tfBody = GetComponent<Transform>();
-        _rgBody = GetComponent<Rigidbody>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        _increment = _speed * Time.deltaTime;
-
-        _yRot = (Input.GetAxis("Mouse X") * _mouseSensitivity + _yRot)%360;
-        
-        _tfBody.localRotation = Quaternion.AngleAxis(_yRot, Vector3.up);
-
-
-        _xRot += Input.GetAxis("Mouse Y") * (_mouseSensitivity/2);
-        _xRot = Mathf.Clamp(_xRot, -90, 90);
-        _camera.GetComponent<Transform>().localRotation = Quaternion.AngleAxis(-_xRot, Vector3.right);
-
-        //Debug.Log(Input.mousePosition.x);
-
-        Vector3 flatVel = new Vector3(_rgBody.velocity.x, 0f, _rgBody.velocity.z);
-
-        if (flatVel.magnitude > _maxMoveSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * _maxMoveSpeed;
-            _rgBody.velocity = new Vector3(limitedVel.x, _rgBody.velocity.y, limitedVel.z);
-        }
-
-        //_tfBody.Translate(Input.GetAxis("Horizontal") * _increment, 0, Input.GetAxis("Vertical") * _increment);
-        _rgBody.AddForce((_tfBody.forward * Input.GetAxis("Horizontal") * _increment) + (_tfBody.right * Input.GetAxis("Vertical") * _increment), ForceMode.Force);
-        Debug.Log((_tfBody.forward * Input.GetAxis("Horizontal") * _increment) + (_tfBody.right * Input.GetAxis("Vertical") * _increment));
-
-        if (Input.GetKeyDown("escape"))
-        {
-            if (_cursor)
-            {
-                Cursor.lockState = CursorLockMode.None;
-            }
-            else
-            {
-                Cursor.lockState = CursorLockMode.Locked;
-            }
-            _cursor = !_cursor;   
-        }
-
-        if (Input.GetKeyDown("space"))
-        {
-            if (Mathf.Abs(GetComponent<Rigidbody>().velocity.y) < 0.01)  
-            {
-                GetComponent<Rigidbody>().AddForce(0, _jump, 0, ForceMode.Impulse);
-            }
-        }
     }
 }
-
-*/
