@@ -16,7 +16,7 @@ public class BurgerGenAndVerif : MonoBehaviour
     }
 
     public GameObject[] _prefabsIngredients;
-    public GameObject _baseBurger;
+    public Transform _baseBurger;
     private Ingredient[] _burger;
     private int _burgerSize;
 
@@ -24,10 +24,6 @@ public class BurgerGenAndVerif : MonoBehaviour
     void Start()
     {
         GenerateBurger();
-        foreach(Ingredient i in _burger)
-        {
-            Debug.Log(i);
-        }
         InstanciateBurger();
     }
 
@@ -51,11 +47,11 @@ public class BurgerGenAndVerif : MonoBehaviour
 
     void InstanciateBurger()
     {
-        GameObject previousIngredient = _baseBurger;
+        Transform previousIngredient = _baseBurger;
         foreach(Ingredient i in _burger)
         {
-            previousIngredient = Instantiate(_prefabsIngredients[(int)i], previousIngredient.transform);
-            previousIngredient.transform.Translate(0, 0.01f, 0);
+            previousIngredient = Instantiate(_prefabsIngredients[(int)i], previousIngredient).transform;
+            previousIngredient = previousIngredient.GetChild(0);
         }
     }
 }

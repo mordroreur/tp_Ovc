@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1306057515282020368}
   - component: {fileID: 3874497737329069274}
   - component: {fileID: 1000286494719632982}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PainBas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
