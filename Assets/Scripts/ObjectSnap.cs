@@ -23,7 +23,7 @@ public class ObjectSnap : MonoBehaviour
         other.GetComponent<Transform>().SetParent(GetComponent<Transform>().Find("NextPose"), true);
         //other.GetComponent<Transform>().localScale = new Vector3(1 / 0.8f, 1.0f / 0.3f, 1 / 0.8f);
         other.GetComponent<Transform>().localScale = new Vector3(1, 1, 1);
-        other.GetComponent<Transform>().rotation = Quaternion.Euler(0, other.GetComponent<Transform>().rotation.eulerAngles.y, 0);
+        other.GetComponent<Transform>().localRotation = Quaternion.Euler(0, other.GetComponent<Transform>().rotation.eulerAngles.y, 0);
         other.GetComponent<Transform>().localPosition = new Vector3(0, 0, 0);
 
 
