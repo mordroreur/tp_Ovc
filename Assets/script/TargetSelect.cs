@@ -8,6 +8,7 @@ public class TargetSelect : MonoBehaviour
     private Transform _oldParent;
     private bool _isKinematic;
     private bool _hasCollision;
+    private bool _isSanappable;
 
     // Start is called before the first frame update
     void Start()
@@ -60,11 +61,23 @@ public class TargetSelect : MonoBehaviour
         transform.localScale = Vector3.one;
         GetComponent<Rigidbody>().isKinematic = _isKinematic;
         GetComponent<Rigidbody>().detectCollisions = _hasCollision;
+        if(_isSanappable) transform.gameObject.tag = "Snappable";
     }
 
     public void Interact(Transform grabberTf)
     {
-        if(CompareTag("Grabbable") || CompareTag("Snappable")) Grab(grabberTf);
-        else if(TryGetComponent(out ActivateBehaviour _myBehaviour)) _myBehaviour.Activate();
+        if (CompareTag("Grabbable")) 
+        {
+            _isSanappable = false;
+            Grab(grabberTf); 
+        }
+        else if (CompareTag("Snappable")) 
+        {
+            _isSanappable = true;
+            Grab(grabberTf);
+            transform.gameObject.tag = "Grabbable";
+
+        }
+        else if (TryGetComponent(out ActivateBehaviour _myBehaviour)) _myBehaviour.Activate();
     }
 }
