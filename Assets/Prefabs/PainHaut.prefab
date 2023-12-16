@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4212647875447428176}
   - component: {fileID: 2130945505881612442}
   - component: {fileID: 2717891364819192342}
+  - component: {fileID: 7922172309014826613}
   m_Layer: 3
   m_Name: PainHaut
   m_TagString: Untagged
@@ -107,6 +108,19 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -3139552930653209636, guid: 287564ecc88e941068ebb1173e2831f2, type: 3}
+--- !u!114 &7922172309014826613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 473546281665839439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86bc19e088d8cbc4683cbc68efab7242, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _ingredientId: 1
 --- !u!1 &4586069507326380594
 GameObject:
   m_ObjectHideFlags: 0
