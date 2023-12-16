@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 7529999070280543186}
   - component: {fileID: 5736206088995807000}
   - component: {fileID: 8628432229483722132}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Salade
   m_TagString: Untagged
   m_Icon: {fileID: 0}

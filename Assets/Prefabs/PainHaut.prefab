@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4212647875447428176}
   - component: {fileID: 2130945505881612442}
   - component: {fileID: 2717891364819192342}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PainHaut
   m_TagString: Untagged
   m_Icon: {fileID: 0}
