@@ -66,8 +66,11 @@ public class EyeSelector : MonoBehaviour
         {
             if (_heldObject)
             {
-                _heldObject.GetComponent<TargetSelect>().Drop();
-                _heldObject = null;
+                if (!Physics.Linecast(transform.position, _heldObject.transform.position))
+                {
+                    _heldObject.GetComponent<TargetSelect>().Drop();
+                    _heldObject = null;
+                }
             }
         }
     }
