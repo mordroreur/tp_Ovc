@@ -60,7 +60,7 @@ public class TargetSelect : MonoBehaviour
         _grabbedDistance = Vector3.Distance(_grabber.position, transform.position);
         _grabbedRot = transform.rotation;
         transform.SetParent(grabberTf, true);
-        transform.localScale = new Vector3(2, 1, 2);
+        transform.localScale = Vector3.one;//new Vector3(2, 1, 2);
         GetComponent<Rigidbody>().isKinematic = true;
         GetComponent<Rigidbody>().detectCollisions = false;
         

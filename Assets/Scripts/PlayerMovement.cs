@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float _jumpCooldown = 0.25f;
     public float _airMultiplier = 0.4f;
 
-    private bool _canJump;
+    //private bool _canJump;
 
     [Header("Keybinds")]
     public KeyCode _jumpKey = KeyCode.Space;
@@ -36,7 +36,7 @@ public class PlayerMovement : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody>();
         _rigidBody.freezeRotation = true;
 
-        _canJump = true;
+        //_canJump = true;
 
     }
 
@@ -51,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
         _verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
+        /*
         if (Input.GetKey(_jumpKey) && _isGrounded)
         {
 
@@ -61,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
         else if(_isGrounded && !_canJump)
         {
             Invoke(nameof(ResetJump), _jumpCooldown);
-        }
+        }*/
 
         Vector3 flatVel = new Vector3(_rigidBody.velocity.x, 0f, _rigidBody.velocity.z);
 
@@ -108,7 +109,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResetJump()
     {
-        _canJump = true;
+        //_canJump = true;
     }
 
 }
