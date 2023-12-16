@@ -1248,18 +1248,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f59d2c2821cf6f48b3485ba2f4978aa, type: 3}
---- !u!114 &2001245196 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7519867576521988104, guid: fa8099611a292a648bf32572726a9bf7,
-    type: 3}
-  m_PrefabInstance: {fileID: 969923869628740939}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7381c105bac7249cf81a1304265e987d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &969923869628740939
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1273,11 +1261,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Livraison
       objectReference: {fileID: 0}
-    - target: {fileID: 8601200793561921400, guid: fa8099611a292a648bf32572726a9bf7,
-        type: 3}
-      propertyPath: _conveyorBelt
-      value: 
-      objectReference: {fileID: 2001245196}
     - target: {fileID: 8733336693098424307, guid: fa8099611a292a648bf32572726a9bf7,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -9,8 +9,8 @@ public class BurgerGenAndVerif : MonoBehaviour
 
     enum Ingredient
     {
-        PainBas,
         PainHaut,
+        PainBas,
         Steak,
         Salade,
         Tomates,
@@ -42,7 +42,10 @@ public class BurgerGenAndVerif : MonoBehaviour
         _burger[0] = Ingredient.PainBas;
         for(int i = 1; i < _burgerSize - 1; ++i)
         {
-            _burger[i] = (Ingredient) Random.Range(2, System.Enum.GetValues(typeof(Ingredient)).Length);
+            do
+            {
+                _burger[i] = (Ingredient)Random.Range(1, System.Enum.GetValues(typeof(Ingredient)).Length);
+            } while (_burger[i] == _burger[i - 1]);
         }
         _burger[_burgerSize - 1] = Ingredient.PainHaut;
     }
@@ -53,6 +56,7 @@ public class BurgerGenAndVerif : MonoBehaviour
         foreach(Ingredient i in _burger)
         {
             previousIngredient = Instantiate(_prefabsIngredients[(int)i], previousIngredient).transform;
+            previousIngredient.Rotate(0, Random.Range(0.0f,360.0f), 0);
             previousIngredient = previousIngredient.GetChild(0);
         }
     }
