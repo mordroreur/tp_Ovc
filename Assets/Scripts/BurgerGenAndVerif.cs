@@ -61,23 +61,22 @@ public class BurgerGenAndVerif : MonoBehaviour
     {
         GameObject nextPose = plateau.GetComponent<Transform>().Find("NextPose").gameObject;
         GameObject ingredient;
-        Ingredient[] burgerDansPlateau = new Ingredient[100];
-        int size = 0;
+        var burgerDansPlateau = new List<Ingredient>();
 
         while(nextPose.transform.childCount > 0)
         {
             ingredient = nextPose.transform.GetChild(0).gameObject;
-            burgerDansPlateau[size++] = (Ingredient)ingredient.GetComponent<IngredientId>().GetId();
+            burgerDansPlateau.Add((Ingredient)ingredient.GetComponent<IngredientId>().GetId());
             nextPose = ingredient.transform.GetChild(0).gameObject;
         }
 
-        if(_burger.SequenceEqual(burgerDansPlateau))
+        if (_burger.SequenceEqual(burgerDansPlateau))
         {
             Debug.Log("gg");
         }
         else
         {
-            Debug.Log("t'es une merde");
+            Debug.Log("nul");
         }
     }
 }

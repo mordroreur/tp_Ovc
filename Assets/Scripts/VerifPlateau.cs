@@ -5,6 +5,7 @@ using UnityEngine;
 public class VerifPlateau : MonoBehaviour
 {
     public BurgerGenAndVerif _verification;
+    public ConveyorBelt _conveyorBelt;
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,7 @@ public class VerifPlateau : MonoBehaviour
         if (other.gameObject.name == "plateau(Clone)")
         {
             _verification.VerifyBurger(other.gameObject);
+            _conveyorBelt.ConveyorMode(false);
             Destroy(other.gameObject);
         }
     }
