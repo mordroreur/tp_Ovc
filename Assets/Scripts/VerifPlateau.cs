@@ -25,6 +25,7 @@ public class VerifPlateau : MonoBehaviour
         {
             _verification.VerifyBurger(other.gameObject);
             _conveyorBelt.ConveyorMode(false);
+            _verification.RegenerateBurger();
             Destroy(other.gameObject);
         }
     }

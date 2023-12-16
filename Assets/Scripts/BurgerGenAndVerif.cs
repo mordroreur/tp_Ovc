@@ -83,4 +83,11 @@ public class BurgerGenAndVerif : MonoBehaviour
             Debug.Log("nul");
         }
     }
+
+    public void RegenerateBurger()
+    {
+        Destroy(_baseBurger.transform.GetChild(0).gameObject);
+        GenerateBurger();
+        InstanciateBurger();
+    }
 }
