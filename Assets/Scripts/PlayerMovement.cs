@@ -13,11 +13,7 @@ public class PlayerMovement : MonoBehaviour
     public float _jumpCooldown = 0.25f;
     public float _airMultiplier = 0.4f;
 
-
-    private bool _readyToJump;
-
-    private float _walkSpeed;
-    private float _sprintSpeed;
+    private bool _canJump;
 
     [Header("Keybinds")]
     public KeyCode _jumpKey = KeyCode.Space;
@@ -40,13 +36,14 @@ public class PlayerMovement : MonoBehaviour
         _rigidBody = GetComponent<Rigidbody>();
         _rigidBody.freezeRotation = true;
 
-        _readyToJump = true;
+        _canJump = true;
+
     }
 
     private void Update()
     {
         // ground check
-        _isGrounded = Physics.Raycast(transform.position, Vector3.down, _playerHeight * 0.5f + 0.3f);
+        _isGrounded = Physics.Raycast(transform.position, Vector3.down, _playerHeight * 0.51f );
 
 
 
@@ -54,12 +51,15 @@ public class PlayerMovement : MonoBehaviour
         _verticalInput = Input.GetAxisRaw("Vertical");
 
         // when to jump
-        if (Input.GetKey(_jumpKey) && _readyToJump && _isGrounded)
+        if (Input.GetKey(_jumpKey) && _isGrounded)
         {
-            _readyToJump = false;
 
             Jump();
+            _canJump = false;
 
+        }
+        else if(_isGrounded && !_canJump)
+        {
             Invoke(nameof(ResetJump), _jumpCooldown);
         }
 
@@ -105,8 +105,10 @@ public class PlayerMovement : MonoBehaviour
 
         _rigidBody.AddForce(transform.up * _jumpForce, ForceMode.Impulse);
     }
+
     private void ResetJump()
     {
-        _readyToJump = true;
+        _canJump = true;
     }
+
 }

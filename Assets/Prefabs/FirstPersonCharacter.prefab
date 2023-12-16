@@ -217,9 +217,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveSpeed: 7
   _groundDrag: 5
-  _jumpForce: 12
-  _jumpCooldown: 0.25
-  _airMultiplier: 0.4
+  _jumpForce: 1
+  _jumpCooldown: 1
+  _airMultiplier: 0.2
   _jumpKey: 32
   _playerHeight: 2
   _orientation: {fileID: 3998650246552088310}
