@@ -123,6 +123,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &315782557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8283738550856202640, guid: 09b6d57d86bf21445895389ba9c69a1e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1332472190}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &516610202
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 516610204}
+  - component: {fileID: 516610203}
+  m_Layer: 0
+  m_Name: ScriptHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &516610203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516610202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acfb6a779dc732e43b9f559e5b210555, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &516610204
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516610202}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.0126123, y: -1.5993755, z: -57.570618}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &781162396
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -271,6 +321,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1480363303}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1059961436 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6549272766924019938, guid: 88d618c2ac5553a4a90aba58e85cea00,
+    type: 3}
+  m_PrefabInstance: {fileID: 1480363303}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8db1e5d1b672f364685e46304f2b91b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1332472190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -279,6 +341,41 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1499481315511103722, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499481315511103722, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499481315511103722, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 516610203}
+    - target: {fileID: 1499481315511103722, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499481315511103722, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: goMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499481315511103722, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MiniFonctionBoutton, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1499481315511103722, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2237649866265647324, guid: 09b6d57d86bf21445895389ba9c69a1e,
         type: 3}
       propertyPath: m_Pivot.x
@@ -383,6 +480,41 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PauseMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721028572163608718, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721028572163608718, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721028572163608718, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1059961436}
+    - target: {fileID: 6721028572163608718, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721028572163608718, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: enterGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721028572163608718, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: WalkMovement, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 6721028572163608718, guid: 09b6d57d86bf21445895389ba9c69a1e,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -501,6 +633,16 @@ PrefabInstance:
         type: 3}
       propertyPath: whatIsGround.m_Bits
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 6549272766924019938, guid: 88d618c2ac5553a4a90aba58e85cea00,
+        type: 3}
+      propertyPath: _escapeMenu
+      value: 
+      objectReference: {fileID: 315782557}
+    - target: {fileID: 6549272766924019938, guid: 88d618c2ac5553a4a90aba58e85cea00,
+        type: 3}
+      propertyPath: _isActivetedOnStart
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9097946035239813796, guid: 88d618c2ac5553a4a90aba58e85cea00,
         type: 3}
@@ -890,3 +1032,4 @@ SceneRoots:
   - {fileID: 1916393805}
   - {fileID: 860174061}
   - {fileID: 1332472190}
+  - {fileID: 516610204}
